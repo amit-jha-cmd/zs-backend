@@ -1,25 +1,33 @@
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
-import DB from './databases/index';
-import { Routes } from './index';
-import { logger, stream } from './utils/logger';
-import config from './config';
+import { Routes } from 'interface/routesInterface';
+import { logger, stream } from 'utils/logger';
+import config from 'config';
+import errorHandler from "./middlewares/errorHandler";
+import AppDatabase from "./dao/appDatabase";
 
 class App {
-  public app: express.Application;
-  public port: string | number;
-  public env: string;
+  private readonly app: express.Application;
 
+  private readonly port: string | number;
+
+  private readonly env: string;
+
+  /**
+   * Configures the necessary routes and other resources.
+   *
+   * @param routes
+   */
   constructor(routes: Routes[]) {
     this.app = express();
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'development';
 
-    this.connectToDatabase();
-    this.initializeMiddlewares();
+    AppDatabase.getInstance().authenticate();
     this.initializeRoutes(routes);
+    this.initializeMiddlewares();
   }
 
   public listen() {
@@ -31,21 +39,13 @@ class App {
     });
   }
 
-  public getServer() {
-    return this.app;
-  }
-
-  private connectToDatabase() {
-    // TODO: Uncomment this line after setting up a DB instance and updating the values in `config.ts`
-    DB.sequelize.sync({ force: false });
-  }
-
   private initializeMiddlewares() {
     this.app.use(morgan(config.log.format, { stream }));
     this.app.use(hpp());
     this.app.use(helmet());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(errorHandler);
   }
 
   private initializeRoutes(routes: Routes[]) {
