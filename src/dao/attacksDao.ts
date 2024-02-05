@@ -1,5 +1,5 @@
-import AppDatabase, {Database} from "./appDatabase";
-import {Op, Sequelize, where} from "sequelize";
+import AppDatabase from "./appDatabase";
+import {Op, Sequelize } from "sequelize";
 import attackModel, {AttackModel} from "../models/AttackModel";
 
 class AttacksDao {
@@ -26,7 +26,7 @@ class AttacksDao {
         if(db) {
             result = await attackModel(db).findAll({
                 where: {
-                    datetime: {
+                    timestamp: {
                         [Op.between]: [
                             sdtObj,
                             edtObj,

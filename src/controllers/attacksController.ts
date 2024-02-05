@@ -1,7 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import AttacksDao from "../dao/attacksDao";
 import {AttackModel} from "../models/AttackModel";
-import GetAttacksRequestInterface from "../interface/getAttacksRequestInterface";
 import sendAppResponse from "../utils/sendAppResponse";
 
 class AttacksController {

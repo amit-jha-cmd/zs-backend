@@ -2,7 +2,7 @@ import express, {NextFunction, Request, Response} from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
-import { Routes } from 'interface/routesInterface';
+import { Routes } from 'interfaces/routesInterface';
 import { logger, stream } from 'utils/logger';
 import config from 'config';
 import errorHandler from "./middlewares/errorHandler";

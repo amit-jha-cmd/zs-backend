@@ -1,6 +1,6 @@
 import {Router} from "express";
 import AttacksController from "../controllers/attacksController";
-import {Routes} from "../interface/routesInterface";
+import {Routes} from "../interfaces/routesInterface";
 
 class AttacksRoute implements Routes {
     private basePath: string = '/attacks';
