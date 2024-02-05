@@ -1,5 +1,5 @@
-import {Routes} from "../interfaces/routesInterface";
-import AttacksRoute from "./attacksRoute";
+import {Routes} from "@interfaces/routesInterface";
+import AttacksRoute from "@routes/attacksRoute";
 
 const appRoutes: Routes[] = [];
 

@@ -1,6 +1,6 @@
-import config from '../config';
+import config from 'config';
 import {Sequelize} from 'sequelize';
-import {logger} from '../utils/logger';
+import {logger} from '@utils/logger';
 
 const {host, port, user, password, database, pool} = config.dbConfig;
 

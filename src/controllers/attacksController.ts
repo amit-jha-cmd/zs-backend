@@ -1,9 +1,9 @@
 import {NextFunction, Request, Response} from "express";
-import AttacksDao from "../dao/attacksDao";
-import {AttackModel} from "../models/AttackModel";
-import sendAppResponse from "../utils/sendAppResponse";
-import GetAttacksRequestInterface from "../interfaces/requests/getAttacksRequestInterface";
-import GetOverviewRequestInterface from "../interfaces/requests/getOverviewRequestInterface";
+import AttacksDao from "@dao/attacksDao";
+import {AttackModel} from "@models/AttackModel";
+import sendAppResponse from "@utils/sendAppResponse";
+import GetAttacksRequestInterface from "@interfaces/requests/getAttacksRequestInterface";
+import GetOverviewRequestInterface from "@interfaces/requests/getOverviewRequestInterface";
 
 class AttacksController {
     private static instance: AttacksController | null = null;

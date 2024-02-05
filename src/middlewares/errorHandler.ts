@@ -1,5 +1,5 @@
-import {Request, Response, NextFunction, request} from "express";
-import SendAppResponse from "../utils/sendAppResponse";
+import {Request, Response, NextFunction} from "express";
+import SendAppResponse from "@utils/sendAppResponse";
 import {StatusCodes} from "http-status-codes";
 
 function errorHandler(err: Error, _: Request, res: Response, next: NextFunction) {

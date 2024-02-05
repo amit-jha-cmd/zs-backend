@@ -1,6 +1,6 @@
-import AppDatabase from "./appDatabase";
+import AppDatabase from "@dao/appDatabase";
 import sequelize, {Op, Sequelize} from "sequelize";
-import attackModel, {AttackModel} from "../models/AttackModel";
+import attackModel, {AttackModel} from "@models/AttackModel";
 
 class AttacksDao {
     private static instance: AttacksDao | null = null;
