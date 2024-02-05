@@ -2,6 +2,8 @@ import {NextFunction, Request, Response} from "express";
 import AttacksDao from "../dao/attacksDao";
 import {AttackModel} from "../models/AttackModel";
 import sendAppResponse from "../utils/sendAppResponse";
+import GetAttacksRequestInterface from "../interfaces/requests/getAttacksRequestInterface";
+import GetOverviewRequestInterface from "../interfaces/requests/getOverviewRequestInterface";
 
 class AttacksController {
     private static instance: AttacksController | null = null;
@@ -15,30 +17,26 @@ class AttacksController {
     }
 
 
-    public async getOverview(req: Request, res: Response, next: NextFunction) {
+    public async getOverview(req: Request<{}, {}, {}, GetOverviewRequestInterface>, res: Response, next: NextFunction) {
         try {
-            let query = req.query;
-            let startDatetime: string = <string>query.startDateTime;
-            let endDateTime: string = <string>query.endDateTime;
+            const {startDateTime, endDateTime} = req.query;
 
             let attacksDao: AttacksDao = AttacksDao.getInstance();
 
-            let entries: AttackModel[] = await attacksDao.getAttackEntryInDateRange(startDatetime, endDateTime);
+            let entries: AttackModel[] = await attacksDao.getAttackEntryOverviewInRange(startDateTime, endDateTime);
             sendAppResponse<AttackModel[] | null>(res, entries);
         } catch (e) {
             next(e);
         }
     }
 
-    public async getAttacksInRange(req: Request, res: Response, next: NextFunction) {
+    public async getAttacksInRange(req: Request<{}, {}, {}, GetAttacksRequestInterface>, res: Response, next: NextFunction) {
         try {
-            let query = req.query;
-            let startDatetime: string = <string>query.startDateTime;
-            let endDateTime: string = <string>query.endDateTime;
+            const {startDateTime, endDateTime, page, pageSize} = req.query;
 
             let attacksDao: AttacksDao = AttacksDao.getInstance();
 
-            let entries: AttackModel[] = await attacksDao.getAttackEntryInDateRange(startDatetime, endDateTime);
+            let entries: AttackModel[] = await attacksDao.getAttacksInRange(startDateTime, endDateTime, page, pageSize);
             sendAppResponse<AttackModel[] | null>(res, entries);
         } catch (e) {
             console.log(e);

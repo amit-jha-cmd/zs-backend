@@ -1,6 +1,8 @@
 interface GetAttacksRequestInterface {
-    startDateTime: Date,
-    endDateTime: Date,
+    startDateTime: string,
+    endDateTime: string,
+    page: number,
+    pageSize: number,
     sortBy: "date" | null
 }
 
