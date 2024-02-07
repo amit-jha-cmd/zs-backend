@@ -3,7 +3,7 @@ interface GetAttacksRequestInterface {
     endDateTime: string,
     page: number,
     pageSize: number,
-    sortBy: "date" | null
+    sortBy: string | undefined;
 }
 
 export default GetAttacksRequestInterface;

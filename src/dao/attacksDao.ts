@@ -45,7 +45,7 @@ class AttacksDao {
         return result;
     }
 
-    public async getAttacksInRange(startDateTime: string, endDateTime: string, page: number, pageSize: number = 10): Promise<AttackModel[]> {
+    public async getAttacksInRange(startDateTime: string, endDateTime: string, page: number, pageSize: number = 10, sortBy: string | undefined): Promise<AttackModel[]> {
         let result: AttackModel[] = [];
 
         let sdtObj: Date = new Date(startDateTime);
@@ -57,6 +57,7 @@ class AttacksDao {
             result = await attackModel(this.db).findAll({
                 limit: pageSize,
                 offset: offset,
+                order: sortBy ? [sortBy] : undefined,
                 where: {
                     timestamp: {
                         [Op.between]: [

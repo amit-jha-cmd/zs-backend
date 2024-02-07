@@ -23,6 +23,9 @@ class AttacksController {
 
             let attacksDao: AttacksDao = AttacksDao.getInstance();
 
+            // JUST FOR DEMO PURPOSE
+            await new Promise( resolve => setTimeout(resolve, 2000));
+
             let entries: AttackModel[] = await attacksDao.getAttackEntryOverviewInRange(startDateTime, endDateTime);
             sendAppResponse<AttackModel[] | null>(res, entries);
         } catch (e) {
@@ -32,14 +35,16 @@ class AttacksController {
 
     public async getAttacksInRange(req: Request<{}, {}, {}, GetAttacksRequestInterface>, res: Response, next: NextFunction) {
         try {
-            const {startDateTime, endDateTime, page, pageSize} = req.query;
+            const {startDateTime, endDateTime, page, pageSize, sortBy} = req.query;
 
             let attacksDao: AttacksDao = AttacksDao.getInstance();
 
-            let entries: AttackModel[] = await attacksDao.getAttacksInRange(startDateTime, endDateTime, page, pageSize);
+            // JUST FOR DEMO PURPOSE
+            await new Promise( resolve => setTimeout(resolve, 2000));
+
+            let entries: AttackModel[] = await attacksDao.getAttacksInRange(startDateTime, endDateTime, page, pageSize, sortBy);
             sendAppResponse<AttackModel[] | null>(res, entries);
         } catch (e) {
-            console.log(e);
             next(e);
         }
     }

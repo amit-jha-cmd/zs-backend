@@ -7,6 +7,7 @@ import { logger, stream } from '@utils/logger';
 import config from 'config';
 import errorHandler from "@middlewares/errorHandler";
 import AppDatabase from "@dao/appDatabase";
+import cors from "cors";
 
 class App {
   private readonly app: express.Application;
@@ -22,10 +23,11 @@ class App {
    */
   constructor(routes: Routes[]) {
     this.app = express();
-    this.port = process.env.PORT || 3000;
+    this.port = process.env.PORT || 8000;
     this.env = process.env.NODE_ENV || 'development';
 
     AppDatabase.getInstance().authenticate();
+    this.app.use(cors())
     this.initializeRoutes(routes);
     this.initializeMiddlewares();
   }
