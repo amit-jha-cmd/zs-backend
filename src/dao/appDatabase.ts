@@ -1,8 +1,10 @@
 import config from 'config';
-import { Sequelize } from 'sequelize';
+import sequelize, { Sequelize } from 'sequelize';
 import { logger } from '@utils/logger';
+import * as process from "process";
 
-const { host, port, user, password, database, pool } = config.dbConfig;
+const {HOST, USER, PASSWORD, DATABASE} = process.env;
+
 
 /**
  *
@@ -19,14 +21,17 @@ class AppDatabase {
    * The vendor internally handles connection pooling but our app should not create object instances unnecessarily
    */
   public static getInstance(): Sequelize {
+
     if (!AppDatabase.instance) {
-      AppDatabase.instance = new Sequelize(database, user, password, {
-        host: host,
+      AppDatabase.instance = new Sequelize(DATABASE!, USER!, PASSWORD, {
+        host: HOST,
         dialect: 'postgres',
-        port: port,
+        password: PASSWORD,
+        database: DATABASE,
+        port: 5431,
         pool: {
-          min: pool.min,
-          max: pool.max,
+          min: 0,
+          max: 5,
         },
         logQueryParameters: process.env.NODE_ENV === 'development',
         logging: (query, time) => {

@@ -42,9 +42,8 @@ export default function (sequelize: Sequelize): typeof AttackModel {
   AttackModel.init(
     {
       id: {
-        autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       type: {
         type: DataTypes.STRING,
@@ -60,7 +59,6 @@ export default function (sequelize: Sequelize): typeof AttackModel {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'kill_chain_phase',
       },
       timestamp: {
         type: DataTypes.DATE,
@@ -71,61 +69,51 @@ export default function (sequelize: Sequelize): typeof AttackModel {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'attacker_id',
       },
       attackerIp: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'attacker_ip',
       },
       attackerName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'attacker_name',
       },
       attackerPort: {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: false,
-        field: 'attacker_port',
       },
       decoyId: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'decoy_id',
       },
       decoyName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'decoy_name',
       },
       decoyGroup: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'decoy_group',
       },
       decoyIp: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
-        field: 'decoy_ip',
       },
       decoyPort: {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: false,
-        field: 'decoy_port',
       },
       decoyType: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        field: 'decoy_type',
       },
     },
     {
