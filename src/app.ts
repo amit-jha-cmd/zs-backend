@@ -5,9 +5,9 @@ import morgan from 'morgan';
 import { Routes } from '@interfaces/routesInterface';
 import { logger, stream } from '@utils/logger';
 import config from 'config';
-import errorHandler from "@middlewares/errorHandler";
-import AppDatabase from "@dao/appDatabase";
-import cors from "cors";
+import errorHandler from '@middlewares/errorHandler';
+import AppDatabase from '@dao/appDatabase';
+import cors from 'cors';
 
 class App {
   private readonly app: express.Application;
@@ -27,7 +27,7 @@ class App {
     this.env = process.env.NODE_ENV || 'development';
 
     AppDatabase.getInstance().authenticate();
-    this.app.use(cors())
+    this.app.use(cors());
     this.initializeRoutes(routes);
     this.initializeMiddlewares();
   }
@@ -51,7 +51,7 @@ class App {
   }
 
   private initializeRoutes(routes: Routes[]) {
-    routes.forEach(route => {
+    routes.forEach((route) => {
       this.app.use('/', route.router);
     });
   }

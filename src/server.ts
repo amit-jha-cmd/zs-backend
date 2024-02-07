@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import App from 'app';
-import appRoutes from "routes/appRoutes";
+import appRoutes from 'routes/appRoutes';
 
 const app = new App(appRoutes);
 
