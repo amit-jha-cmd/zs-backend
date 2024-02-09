@@ -1,7 +1,6 @@
-import config from 'config';
-import sequelize, { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize';
 import { logger } from '@utils/logger';
-import * as process from "process";
+import * as process from 'process';
 
 const {HOST, USER, PASSWORD, DATABASE} = process.env;
 
@@ -34,7 +33,7 @@ class AppDatabase {
           max: 5,
         },
         logQueryParameters: process.env.NODE_ENV === 'development',
-        logging: (query, time) => {
+        logging: (query: string, time?: number) => {
           logger.info(time + 'ms' + ' ' + query);
         },
         benchmark: true,
@@ -46,3 +45,4 @@ class AppDatabase {
 }
 
 export default AppDatabase;
+
