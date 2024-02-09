@@ -29,10 +29,10 @@ class AttacksDao {
           },
         },
         attributes: [
-          [sequelize.fn('date_trunc', 'min', sequelize.col('timestamp')), 'minute'],
+          [sequelize.fn('date_trunc', 'hour', sequelize.col('timestamp')), 'hour'],
           [sequelize.fn('count', '*'), 'count'],
         ],
-        group: ['timestamp'],
+        group: ['hour'],
       });
     }
 

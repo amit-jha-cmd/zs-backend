@@ -27,11 +27,10 @@
       "@middlewares/*": ["./middlewares/*"],
       "@interfaces/*": ["./interfaces/*"],
       "@dao/*": ["./dao/*"],
-      "@controllers/*": ["./controllers/*"],
+      "@controllers/*": ["./controllers/*"]
     },
     "strict": true,
   },
   "include": ["src/**/*.ts", "src/**/*.json", ".env"],
-  "exclude": ["node_modules"],
-
+  "exclude": ["node_modules"]
 }
